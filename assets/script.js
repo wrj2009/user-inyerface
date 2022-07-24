@@ -1,4 +1,3 @@
-let moveID;
 let app = new Vue({
   el: '#app',
   data: () => ({
@@ -99,7 +98,7 @@ let app = new Vue({
     sendToBottom () {
       this.helpContent = ''
       this.showWaitingPeople = false
-      moveID = setInterval(() => {
+      let moveID = setInterval(() => {
         this.helpDialogHeight -= (256 - 10) / (12000 / 10)
         this.helpStyle = `bottom: ${this.helpDialogHeight}px;`
       }, 10)
@@ -108,7 +107,7 @@ let app = new Vue({
       }, 12000)
     },
     up () {
-      moveID = setInterval(() => {
+      let moveID = setInterval(() => {
         this.helpDialogHeight += 50 / (200 / 10)
         this.helpStyle = `min-height: ${220 + this.helpDialogHeight}px; bottom: 0;`
       }, 10)
