@@ -124,6 +124,8 @@ let app = new Vue({
       this.notAcceptWarning = false
       if (this.password === '输入密码') {
         this.passwordValid = false
+      } else if (this.password.length < 10) {
+        this.passwordValid = false
       } else if (this.password.toLowerCase() === this.password) {
         this.passwordValid = false
       } else if (this.password.match(/\d/).length === 0) {
@@ -137,8 +139,9 @@ let app = new Vue({
           }
         }
         if (containsCharacterInEmail) {
-          this.passwordValid = true
           this.passwordNotUnsafe = true
+        } else {
+          this.passwordValid = false
         }
       }
       if (this.email === '您的电子邮箱') {
@@ -158,9 +161,12 @@ let app = new Vue({
       }
     },
     passwordInputValidate () {
-      if (passwordNotUnsafe !== undefined) {
+      if (this.passwordNotUnsafe !== undefined) {
         this.passwordValid = true
+        this.passwordNotUnsafe = false
         if (this.password === '输入密码') {
+          this.passwordValid = false
+        } else if (this.password.length < 10) {
           this.passwordValid = false
         } else if (this.password.toLowerCase() === this.password) {
           this.passwordValid = false
@@ -175,8 +181,9 @@ let app = new Vue({
             }
           }
           if (containsCharacterInEmail) {
-            this.passwordValid = true
             this.passwordNotUnsafe = true
+          } else {
+            this.passwordValid = false
           }
         }
       }
