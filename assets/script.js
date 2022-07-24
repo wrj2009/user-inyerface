@@ -156,6 +156,30 @@ let app = new Vue({
       if (this.passwordValid && this.emailValid && this.domainNameValid && this.domainValid && !this.notAcceptWarning) {
         this.registerStep = 2
       }
+    },
+    passwordInputValidate () {
+      if (passwordNotUnsafe !== undefined) {
+        this.passwordValid = true
+        if (this.password === '输入密码') {
+          this.passwordValid = false
+        } else if (this.password.toLowerCase() === this.password) {
+          this.passwordValid = false
+        } else if (this.password.match(/\d/).length === 0) {
+          this.passwordValid = false
+        } else {
+          let containsCharacterInEmail = false
+          for (let i = 0; i < this.email.length; i++) {
+            if (this.password.indexOf(this.email[i]) !== -1) {
+              containsCharacterInEmail = true
+              break
+            }
+          }
+          if (containsCharacterInEmail) {
+            this.passwordValid = true
+            this.passwordNotUnsafe = true
+          }
+        }
+      }
     }
   }
 })

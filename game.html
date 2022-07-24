@@ -32,7 +32,7 @@
         <div id="form">
           <p id="form-step">{{ registerStep }} / 4</p>
           <div id="form-1">
-            <input v-model="password" :class="'block' + (passwordValid ? '' : ' invalid')" placeholder="输入密码" @blur="passwordOnBlur" type="text" />
+            <input v-model="password" :class="'block' + (passwordValid ? '' : ' invalid')" placeholder="输入密码" @blur="passwordOnBlur" @input="passwordInputValidate" type="text" />
             <div id="email">
               <input v-model="email" placeholder="您的电子邮箱" @blur="emailOnBlur" type="text" :class="emailValid ? '' : 'invalid'" />
               <span>@</span>
